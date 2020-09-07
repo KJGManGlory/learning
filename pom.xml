@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>javase</module>
+        <module>concurrency</module>
     </modules>
     <name>learning</name>
     <description>learning</description>
