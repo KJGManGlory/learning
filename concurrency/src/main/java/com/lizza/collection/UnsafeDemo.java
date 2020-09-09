@@ -1,7 +1,9 @@
 package com.lizza.collection;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * 线程不安全的例子: 多个线程操作同一个ArrayList
@@ -37,10 +39,34 @@ import java.util.concurrent.CopyOnWriteArrayList;
         }
     }
  */
-public class UnsafeList {
+public class UnsafeDemo {
 
     public static void main(String[] args) {
-        List<String> list = new CopyOnWriteArrayList<>(); // new CopyOnWriteArrayList<>(); // Collections.synchronizedList(new ArrayList<>()); // new Vector<>(); // new ArrayList<>();
+
+    }
+
+    public static void unsafeMap() {
+        Map<String, Object> map = new ConcurrentHashMap<>(); // Collections.synchronizedMap(new HashMap<>()); // new HashTable<>(); // new HashMap<>();
+        for (int i = 0; i < 30; i++) {
+            new Thread(() -> {
+                map.put(Thread.currentThread().getName(), UUID.randomUUID().toString().substring(0, 8));
+                System.out.println(map);
+            }, String.valueOf(i)).start();
+        }
+    }
+
+    public static void unsafeSet() {
+        Set<String> set = new CopyOnWriteArraySet<>(); // Collections.synchronizedSet(new HashSet<>()); // new HashSet<>();
+        for (int i = 0; i < 30; i++) {
+            new Thread(() -> {
+                set.add(UUID.randomUUID().toString().substring(0, 8));
+                System.out.println(set);
+            }, String.valueOf(i)).start();
+        }
+    }
+
+    public static void unsafeList() {
+        List<String> list = new CopyOnWriteArrayList<>(); // Collections.synchronizedList(new ArrayList<>()); // new Vector<>(); // new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             new Thread(() -> {
                 list.add(UUID.randomUUID().toString().substring(0, 8));
@@ -49,3 +75,5 @@ public class UnsafeList {
         }
     }
 }
+
+
