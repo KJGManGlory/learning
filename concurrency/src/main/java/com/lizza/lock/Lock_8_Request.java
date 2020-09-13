@@ -1,4 +1,4 @@
-package com.lizza.thread;
+package com.lizza.lock;
 
 /**
  * 题目: 线程8锁
@@ -31,7 +31,7 @@ package com.lizza.thread;
  *    之间是不会有竞态条件的; 但是一旦一个静态同步方法获取锁后, 其他的静态同步方法都必须等待该方法释放锁后才能获取锁,
  *    而不管是同一个实例对象的静态同步方法之间, 还是不同的实例对象的静态同步方法之间, 只要它们同一个类的实例对象
  */
-public class Thread_13 {
+public class Lock_8_Request {
 
     public static void main(String[] args) throws Exception{
         Phone phone = new Phone();
