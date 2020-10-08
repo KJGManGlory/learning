@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Import;
  * @Import
  * 该注解用于快速向容器中注册Bean
  */
-@Import({Red.class, Blue.class})
 @Configuration
+@Import({Red.class, Blue.class, ColorSelector.class})
 public class ColorConfig {
 
 }

@@ -8,8 +8,18 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import java.util.Map;
 
 /**
- * 向容器中
+ * 向容器中注册Bean
+ * 1. 常用注解: @Controller, @Service, @Repository, @Component; 用于自己定义的类
+ * 2. @Bean: 用于第三方jar
+ * 3. @Import: 快速注册组件
+ *      1. Class对象数组
+ *      2. ImportSelector Class对象: 可以自定义注册规则
+ *      3. ImportBeanDefinitionRegistrar Class对象:
  */
+
+
+
+
 public class TestApp {
 
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
@@ -17,7 +27,6 @@ public class TestApp {
     @Test
     public void test1() {
         printBeans();
-        printEnvs();
     }
 
     /**
