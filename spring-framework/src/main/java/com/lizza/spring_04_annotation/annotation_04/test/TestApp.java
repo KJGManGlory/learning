@@ -1,7 +1,6 @@
 package com.lizza.spring_04_annotation.annotation_04.test;
 
 import com.lizza.spring_04_annotation.annotation_04.config.SpringConfig;
-import com.lizza.spring_04_annotation.annotation_04.entity.Person;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -9,7 +8,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import java.util.Map;
 
 /**
- *
+ * 向容器中
  */
 public class TestApp {
 
