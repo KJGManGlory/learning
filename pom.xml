@@ -9,6 +9,7 @@
     <modules>
         <module>javase</module>
         <module>concurrency</module>
+        <module>spring-framework</module>
     </modules>
     <name>learning</name>
     <description>learning</description>
