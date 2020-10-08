@@ -1,6 +1,6 @@
 package com.lizza.spring_02_ioc.factory;
 
-import com.lizza.dao.UserDao;
+import com.lizza.spring_02_ioc.dao.UserDao;
 
 /**
  * 模拟jar包中的工厂方法（我们无法通过修改源码的方式来提供默认构造器）

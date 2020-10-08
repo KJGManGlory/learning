@@ -1,6 +1,6 @@
 package com.lizza.spring_02_ioc.factory;
 
-import com.lizza.dao.UserDao;
+import com.lizza.spring_02_ioc.dao.UserDao;
 
 /**
  * @Desc:
