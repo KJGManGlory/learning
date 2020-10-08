@@ -20,7 +20,7 @@ public class BeanFactory {
     static {
         prop = new Properties();
         beans = new HashMap<>();
-        InputStream is = BeanFactory.class.getClassLoader().getResourceAsStream("bean.properties");
+        InputStream is = BeanFactory.class.getClassLoader().getResourceAsStream("spring_01_beans.properties");
         try {
             prop.load(is);
             Enumeration<Object> keys = prop.keys();

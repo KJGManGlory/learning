@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        spring依赖注入：
+            当前对象需要使用其他对象的时候，由spring容器提供并且维护对象之间的依赖
+            关系，这种方式称为spring依赖注入
+        三种注入方式：
+            1. 构造器注入
+            2. set方法注入
+            3. 使用注解注入
+        可以注入三类数据：
+            1. String和基本类型
+            2. 其他spring容器中的bean类型
+            3. 复杂类型和集合
+    -->
+
+    <!--
+        构造器注入：在bean标签内部使用constructor-arg标签
+        属性含义：
+            name：构造器参数名
+            value：构造器参数值
+            ref：构造器引用类型参数名，如Data类型参数
+            type：构造器参数类型
+            index：构造器参数位置，从0开始
+        优势：能够保证注入的组件不可变，并且确保需要的依赖不为空，保证完全初始化的状态
+        弊端：增加了对象初始化时的复杂度
+     -->
+    <bean id="user" class="com.lizza.spring_03_di.entity.User">
+        <constructor-arg name="name" value="栗子"/>
+        <constructor-arg name="age" value="18"/>
+        <constructor-arg name="birthday" ref="birthday"/>
+    </bean>
+
+    <bean id="birthday" class="java.util.Date"/>
+
+    <!--
+        set方法注入：在bean标签中使用property属性（更常用）
+        属性含义：
+            name：构造器参数名
+            value：构造器参数值
+            ref：构造器引用类型参数名，如Data类型参数
+        优势：降低了对象初始化时的复杂度
+        弊端：不能能够保证注入的组件不可变，不能确保需要的依赖不为空，不能保证完全初始化的状态
+    -->
+    <bean id="student" class="com.lizza.spring_03_di.entity.Student">
+        <property name="name" value="桃子"/>
+        <property name="age" value="18"/>
+        <property name="birthday" ref="birthday"/>
+    </bean>
+
+    <!--
+        复杂类型/集合注入：主要使用list和map标签实现
+        属性含义：
+            list：list，array，set类型的数据可以使用list标签注入
+            map：map，property类型的数据可以使用map标签注入
+        总结：结构相同，标签可以互换
+    -->
+    <bean id="teacher" class="com.lizza.spring_03_di.entity.Teacher">
+        <property name="students">
+            <list>
+                <value>张三</value>
+                <value>李四</value>
+                <value>王五</value>
+            </list>
+        </property>
+        <property name="info">
+            <map>
+                <entry key="name" value="李老师"/>
+                <entry key="age" value="19"/>
+                <entry key="sex" value="女"/>
+            </map>
+        </property>
+    </bean>
+</beans>
