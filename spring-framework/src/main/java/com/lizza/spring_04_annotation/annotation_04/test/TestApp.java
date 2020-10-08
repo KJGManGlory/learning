@@ -12,9 +12,12 @@ import java.util.Map;
  * 1. 常用注解: @Controller, @Service, @Repository, @Component; 用于自己定义的类
  * 2. @Bean: 用于第三方jar
  * 3. @Import: 快速注册组件
- *      1. Class对象数组
- *      2. ImportSelector Class对象: 可以自定义注册规则
- *      3. ImportBeanDefinitionRegistrar Class对象:
+ *      1) Class对象数组
+ *      2) ImportSelector Class对象: 可以自定义注册规则
+ *      3) ImportBeanDefinitionRegistrar Class对象: 同样可以自定义Bean的注册规则
+ * 4. 通过实现FactoryBean接口来注册Bean
+ *      1) 默认获取的是getObject方法返回的对象
+ *      2) 若需要获取FactoryBean本身, 则需要在bean的name前加&符号: &animalFactoryBean
  */
 
 
@@ -27,6 +30,14 @@ public class TestApp {
     @Test
     public void test1() {
         printBeans();
+    }
+
+    @Test
+    public void test2() {
+        Object object = context.getBean("animalFactoryBean");
+        System.out.println(object);
+        Object factory = context.getBean("&animalFactoryBean");
+        System.out.println(factory);
     }
 
     /**
