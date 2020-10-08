@@ -24,7 +24,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  *
  * 使用方法:
  * 1. @Bean注解中指定初始化和销毁的方法: initMethod(), destroyMethod()
- * 2. Bean实现
+ * 2. Bean实现InitializingBean, DisposableBean接口
+ *      在afterPropertiesSet()方法中实现初始化逻辑
+ *      在destroy()方法中实现销毁逻辑
  *
  *
  */
