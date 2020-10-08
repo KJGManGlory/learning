@@ -7,14 +7,9 @@ import com.itextpdf.tool.xml.XMLWorkerFontProvider;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.util.ClassUtils;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
-
+import org.springframework.util.FileCopyUtils;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URI;
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +22,10 @@ import java.util.Map;
  */
 public class PdfHelper {
 
+    private static final String SRC_PATH = "/templates/";
+    private static final String DES_PATH = "./templates/";
+    private static final String FONT = "simhei.ttf";
+
     public static void download(HttpServletResponse response, Map<String, Object> data, String templateName) {
         Document document = new Document();
         PdfWriter writer;
@@ -37,9 +36,10 @@ public class PdfHelper {
             response.setCharacterEncoding("utf-8");
             writer = PdfWriter.getInstance(document, response.getOutputStream());
             document.open();
+            getResource(FONT);
             XMLWorkerFontProvider fontProvider =
                     new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
-            fontProvider.register("/Users/lizza/Desktop/temp/simhei.ttf");
+            fontProvider.register(DES_PATH + FONT);
             XMLWorkerHelper.getInstance()
                     .parseXHtml(writer, document, new ByteArrayInputStream(content.getBytes()), null,
                             Charset.forName("UTF-8"), fontProvider);
@@ -58,7 +58,8 @@ public class PdfHelper {
         Writer out = new StringWriter();
         try {
             Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
-            configuration.setDirectoryForTemplateLoading(new File("/Users/lizza/Desktop/temp"));
+            getResource(templateName);
+            configuration.setDirectoryForTemplateLoading(new File(DES_PATH));
             Template template = configuration.getTemplate(templateName);
             data.put("msg", "Lizza, 你好呀!");
             template.process(data, out);
@@ -74,5 +75,14 @@ public class PdfHelper {
             }
         }
         return null;
+    }
+
+    private static void getResource(String resourceName) throws IOException {
+        InputStream is = PdfHelper.class.getResourceAsStream(SRC_PATH + resourceName);
+        File target = new File(DES_PATH + resourceName);
+        if (!target.exists()) {
+            target.getParentFile().mkdirs();
+            FileCopyUtils.copy(is, new FileOutputStream(target));
+        }
     }
 }
