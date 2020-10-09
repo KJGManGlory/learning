@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            https://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx
+            https://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/aop
+            https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 配置service -->
+    <bean id="userService" class="com.lizza.spring_06_tx.tx_01_xml.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+    <!-- 配置dao，由于dao继承了JdbcDaoSupport，所以需要初始化dataSource -->
+    <bean id="userDao" class="com.lizza.spring_06_tx.tx_01_xml.dao.impl.UserDaoImpl">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 配置数据源，使用spring提供的dataSource：DriverManagerDataSource -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <!-- spring基于xml声明式事务的配置 -->
+    <!--
+        1. 配置事务管理器
+        2. 配置通知
+        3. 配置切入点表达式
+        4. 织入通知
+        5. 配置事务属性
+     -->
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 配置通知 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 配置事务属性
+                    name: 方法名
+                    isolation: 隔离级别, 默认为DEFAULT, 为数据库的隔离级别
+                    propagation: 事务的传播行为, 默认为REQUIRED, 表示一定会有事务; 涉及数据编辑操作选择REQUIRED, 涉及数据查询操作选择SUPPORTS
+                    read-only: 是否只读事务, 默认值为false, 表示读写
+                    timeout: 设置事务的超时时间, 默认值为-1, 表示永不超时
+                    rollback-for: 指定一个异常, 发生该异常时, 事务进行回滚, 其他异常不回滚; 默认值为都需要回滚
+                    no-rollback-for: 指定一个异常, 发生改一次, 事务不回滚, 其他异常回滚; 默认值为都需要回滚
+             -->
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="transfer*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <!-- 配置切入点表达式 -->
+        <aop:pointcut id="txPoint" expression="execution(* com.lizza.spring_06_tx.tx_01_xml.service.impl.*.*(..))"/>
+        <!-- 织入通知 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint" ></aop:advisor>
+    </aop:config>
+</beans>
