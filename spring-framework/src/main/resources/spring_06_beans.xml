@@ -1,0 +1,44 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userService" class="com.lizza.spring_05_aop.aop_03_spring_aop.service.UserService"></bean>
+
+    <bean id="log" class="com.lizza.spring_05_aop.aop_03_spring_aop.util.Log"></bean>
+
+    <!--
+        Spring中配置AOP的步骤
+        1. 使用<aop:config>标签开始spring aop的配置
+        2. 使用<aop:aspect>标签开始配置切面
+            id: 切面ID
+            ref: 切面处理Bean
+        3. 使用<aop:aspect>等子标签配置通知类型
+            method: 通知处理的具体方法
+            pointcut: 切入点表达式，用于描述哪些连接点可以作为切入点
+        4. 切入点表达式
+            关键字：execution
+            表达式：访问修饰符 返回值 类限定名.方法名(参数列表)
+            标准写法：public void com.lizza.service.UserService.update(int)
+            访问修饰符可以省略：void com.lizza.service.UserService.update(int)
+            返回值可以使用通配符：* com.lizza.service.UserService.update(int)
+            包名可以使用通配符，有几级包写几个*：* *.*.*.UserService.update(int)
+            包名使用..表示当前包及其子包：* com.lizza..update(int)
+            类名和方法名都可以使用通配符：* com.lizza..*()
+            参数列表：* com.lizza..*(..)
+                基本类型：直接写名称，如int，char，double
+                应用类型：全限定名.类名，如：java.lang.String
+                *：表示必须有参数
+                ..：表示有无参数均可
+            全通配形式：* *..*.*(..)
+    -->
+    
+    <aop:config>
+        <aop:aspect id="logAdvice" ref="log">
+            <aop:before method="log" pointcut="execution(* com.lizza..*())"></aop:before>
+        </aop:aspect>
+    </aop:config>
+</beans>

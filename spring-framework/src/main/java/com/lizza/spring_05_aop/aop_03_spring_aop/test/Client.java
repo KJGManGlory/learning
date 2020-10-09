@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Client {
 
     public static void main(String[] args){
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:beans.xml")	;
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring_06_beans.xml")	;
         UserService userService = context.getBean("userService", UserService.class);
         userService.add();
         userService.delete();
