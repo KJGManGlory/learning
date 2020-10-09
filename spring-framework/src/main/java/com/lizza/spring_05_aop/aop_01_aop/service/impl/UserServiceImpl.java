@@ -1,8 +1,8 @@
-package com.lizza.spring_05_aop.service.impl;
+package com.lizza.spring_05_aop.aop_01_aop.service.impl;
 
-import com.lizza.spring_05_aop.entity.User;
-import com.lizza.spring_05_aop.dao.UserDao;
-import com.lizza.spring_05_aop.service.UserService;
+import com.lizza.spring_05_aop.aop_01_aop.dao.UserDao;
+import com.lizza.spring_05_aop.aop_01_aop.entity.User;
+import com.lizza.spring_05_aop.aop_01_aop.service.UserService;
 
 import java.util.List;
 

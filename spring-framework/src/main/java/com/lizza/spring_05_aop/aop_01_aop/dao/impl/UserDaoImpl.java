@@ -1,8 +1,8 @@
-package com.lizza.spring_05_aop.dao.impl;
+package com.lizza.spring_05_aop.aop_01_aop.dao.impl;
 
-import com.lizza.spring_05_aop.entity.User;
-import com.lizza.spring_05_aop.dao.UserDao;
-import com.lizza.spring_05_aop.util.JdbcUtil;
+import com.lizza.spring_05_aop.aop_01_aop.dao.UserDao;
+import com.lizza.spring_05_aop.aop_01_aop.entity.User;
+import com.lizza.spring_05_aop.aop_01_aop.util.JdbcUtil;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;

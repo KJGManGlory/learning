@@ -1,7 +1,7 @@
-package com.lizza.spring_05_aop.factory;
+package com.lizza.spring_05_aop.aop_01_aop.factory;
 
-import com.lizza.spring_05_aop.service.UserService;
-import com.lizza.spring_05_aop.util.TransactionManager;
+import com.lizza.spring_05_aop.aop_01_aop.util.TransactionManager;
+import com.lizza.spring_05_aop.aop_01_aop.service.UserService;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

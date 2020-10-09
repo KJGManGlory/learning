@@ -1,6 +1,6 @@
-package com.lizza.spring_05_aop.dao;
+package com.lizza.spring_05_aop.aop_01_aop.dao;
 
-import com.lizza.spring_05_aop.entity.User;
+import com.lizza.spring_05_aop.aop_01_aop.entity.User;
 
 import java.util.List;
 

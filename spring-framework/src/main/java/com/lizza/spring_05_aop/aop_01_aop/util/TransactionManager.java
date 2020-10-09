@@ -1,4 +1,4 @@
-package com.lizza.spring_05_aop.util;
+package com.lizza.spring_05_aop.aop_01_aop.util;
 
 import java.sql.SQLException;
 

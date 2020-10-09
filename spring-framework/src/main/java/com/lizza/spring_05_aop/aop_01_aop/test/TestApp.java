@@ -1,7 +1,7 @@
-package com.lizza.spring_05_aop.test;
+package com.lizza.spring_05_aop.aop_01_aop.test;
 
-import com.lizza.spring_05_aop.entity.User;
-import com.lizza.spring_05_aop.service.UserService;
+import com.lizza.spring_05_aop.aop_01_aop.entity.User;
+import com.lizza.spring_05_aop.aop_01_aop.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

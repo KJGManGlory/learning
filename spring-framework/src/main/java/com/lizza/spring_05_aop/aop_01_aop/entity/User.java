@@ -1,4 +1,4 @@
-package com.lizza.spring_05_aop.entity;
+package com.lizza.spring_05_aop.aop_01_aop.entity;
 
 /**
  * @Desc:
