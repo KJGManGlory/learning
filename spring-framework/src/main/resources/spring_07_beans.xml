@@ -1,0 +1,36 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userService" class="com.lizza.spring_05_aop.aop_04_spring_aop_advice.service.UserService"></bean>
+
+    <bean id="log" class="com.lizza.spring_05_aop.aop_04_spring_aop_advice.util.Log"></bean>
+
+    <!--
+        Spring中通知类型：
+            前置通知：切入点执行之前执行
+            后置通知：切入点执行之后执行
+            异常通知：切入点执行发生异常时执行
+            最终通知：无论切入点执行发生异常与否，都会执行
+            环绕通知
+    -->
+    
+    <aop:config>
+        <aop:pointcut id="pointCut" expression="execution(* com.lizza..*())"/>
+        <aop:aspect id="logAdvice" ref="log">
+            <!-- 前置通知：切入点执行之前执行 -->
+<!--            <aop:before method="beforeLog" pointcut-ref="pointCut"></aop:before>-->
+            <!-- 后置通知：切入点执行之后执行 -->
+<!--            <aop:after-returning method="afterLog" pointcut-ref="pointCut"></aop:after-returning>-->
+            <!-- 异常通知：切入点执行发生异常时执行 -->
+<!--            <aop:after-throwing method="exceptionLog" pointcut-ref="pointCut"></aop:after-throwing>-->
+            <!-- 最终通知：无论切入点执行发生异常与否，都会执行 -->
+<!--            <aop:after method="finalLog" pointcut-ref="pointCut"></aop:after>-->
+            <aop:around method="aroundLog" pointcut-ref="pointCut"></aop:around>
+        </aop:aspect>
+    </aop:config>
+</beans>
