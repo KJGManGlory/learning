@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 配置带事务控制的service -->
+    <bean id="beanFactory" class="com.lizza.spring_05_aop.factory.BeanFactory">
+        <property name="txManager" ref="txManager"></property>
+        <property name="userService" ref="userService"></property>
+    </bean>
+    <bean id="proxyUserService" factory-bean="beanFactory" factory-method="getUserService"></bean>
+
+    <!-- 配置service -->
+    <bean id="userService" class="com.lizza.spring_05_aop.service.impl.UserServiceImpl">
+        <!-- 注入Dao -->
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean name="txManager" class="com.lizza.spring_05_aop.util.TransactionManager">
+        <property name="jdbcUtil" ref="jdbcUtil"></property>
+    </bean>
+
+    <!-- 配置dao -->
+    <bean id="userDao" class="com.lizza.spring_05_aop.dao.impl.UserDaoImpl">
+        <!-- 注入QueryRunner -->
+        <property name="queryRunner" ref="queryRunner"></property>
+        <property name="jdbcUtil" ref="jdbcUtil"></property>
+    </bean>
+
+    <!-- 配置JdbcUtil -->
+    <bean id="jdbcUtil" class="com.lizza.spring_05_aop.util.JdbcUtil">
+        <!-- 注入数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置QueryRunner；QueryRunner需要配置成多例模式，避免发生线程安全问题 -->
+    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype"></bean>
+
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring"/>
+        <property name="user" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+</beans>
