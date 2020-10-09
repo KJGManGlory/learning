@@ -1,6 +1,6 @@
-package com.lizza.spring_02_ioc.service.impl;
+package com.lizza.spring_02_ioc.ioc_01_base.service.impl;
 
-import com.lizza.spring_02_ioc.service.UserService;
+import com.lizza.spring_02_ioc.ioc_01_base.service.UserService;
 
 /**
  * @Desc:

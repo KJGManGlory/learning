@@ -1,4 +1,4 @@
-package com.lizza.spring_02_ioc.dao;
+package com.lizza.spring_02_ioc.ioc_01_base.dao;
 
 public class UserDao {
 

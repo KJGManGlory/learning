@@ -13,7 +13,7 @@ public class UserController {
 
     public static void main(String[] args){
         // 1. 创建核心容器对象
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring_09_beans.xml");
         // 2. 获取对象
         UserService userService = context.getBean("userServiceImpl", UserService.class);
         userService.saveUser();

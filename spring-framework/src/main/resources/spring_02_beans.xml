@@ -12,18 +12,18 @@
     -->
 
     <!-- 1. 使用默认构造器创建Bean -->
-    <bean id="userService" class="com.lizza.spring_02_ioc.service.impl.UserServiceImpl"></bean>
+    <bean id="userService" class="com.lizza.spring_02_ioc.ioc_01_base.service.impl.UserServiceImpl"></bean>
 
     <!-- 2. 使用普通工厂方法创建Bean
            1) 创建普通工厂对象
            2) 创建实例对象，需要指定普通工厂方法的实例和方法；
               使用factory-bean参数指定工厂对象，使用factory-method工厂方法
      -->
-    <bean id="beanFactory" class="com.lizza.spring_02_ioc.factory.BeanFactory"></bean>
+    <bean id="beanFactory" class="com.lizza.spring_02_ioc.ioc_01_base.factory.BeanFactory"></bean>
     <bean id="userDao1" factory-bean="beanFactory" factory-method="getUserDao"></bean>
 
     <!-- 3. 使用静态工厂方法创建Bean，使用工厂中的静态方法进行创建 -->
-    <bean id="userDao2" class="com.lizza.spring_02_ioc.factory.StaticBeanFactory" factory-method="getUserDao"></bean>
+    <bean id="userDao2" class="com.lizza.spring_02_ioc.ioc_01_base.factory.StaticBeanFactory" factory-method="getUserDao"></bean>
 
     <!--
         Bean的作用范围，使用bean标签中的scope进行限定，常用的有singleton和prototype
@@ -33,8 +33,8 @@
             4. session：作用于web应用中的会话范围
             5. global-session：作用于集群环境中的会话范围
     -->
-    <bean id="userDao3" class="com.lizza.spring_02_ioc.dao.UserDao" scope="singleton"></bean>
-    <bean id="userDao4" class="com.lizza.spring_02_ioc.dao.UserDao" scope="prototype"></bean>
+    <bean id="userDao3" class="com.lizza.spring_02_ioc.ioc_01_base.dao.UserDao" scope="singleton"></bean>
+    <bean id="userDao4" class="com.lizza.spring_02_ioc.ioc_01_base.dao.UserDao" scope="prototype"></bean>
 
     <!--
         Bean的生命周期：
@@ -48,6 +48,6 @@
             存活：对象在使用的时候会一直存活
             销毁：对象长时间不使用，并且没有被其他对象引用，由Java的垃圾回收器进行回收
     -->
-    <bean id="userDao5" class="com.lizza.spring_02_ioc.dao.UserDao" init-method="init" destroy-method="destroy"></bean>
+    <bean id="userDao5" class="com.lizza.spring_02_ioc.ioc_01_base.dao.UserDao" init-method="init" destroy-method="destroy"></bean>
 
 </beans>

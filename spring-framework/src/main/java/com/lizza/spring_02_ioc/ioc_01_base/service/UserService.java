@@ -1,4 +1,4 @@
-package com.lizza.spring_02_ioc.service;
+package com.lizza.spring_02_ioc.ioc_01_base.service;
 
 /**
  * @Desc:

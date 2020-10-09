@@ -1,7 +1,7 @@
-package com.lizza.spring_02_ioc.controller;
+package com.lizza.spring_02_ioc.ioc_01_base.controller;
 
-import com.lizza.spring_02_ioc.dao.UserDao;
-import com.lizza.spring_02_ioc.service.UserService;
+import com.lizza.spring_02_ioc.ioc_01_base.dao.UserDao;
+import com.lizza.spring_02_ioc.ioc_01_base.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
