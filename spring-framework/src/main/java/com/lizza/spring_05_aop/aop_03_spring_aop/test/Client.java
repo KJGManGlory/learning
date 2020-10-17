@@ -5,9 +5,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * @Desc:
- * @author: lizza1643@gmail.com
- * @date: 2020-03-26
+ * Spring AOP: 实现原理为动态代理; AOP是指在程序运行期间动态的将某段代码切入
+ * 指定位置进行运行的编程方式
+ *
  */
 public class Client {
 

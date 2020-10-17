@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/aop
         https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="userService" class="com.lizza.spring_05_aop.aop_04_spring_aop_advice.service.UserService"></bean>
+    <bean id="calculator" class="com.lizza.spring_05_aop.aop_04_spring_aop_advice.service.UserService"></bean>
 
     <bean id="log" class="com.lizza.spring_05_aop.aop_04_spring_aop_advice.util.Log"></bean>
 

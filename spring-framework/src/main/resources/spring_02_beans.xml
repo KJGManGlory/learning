@@ -12,7 +12,7 @@
     -->
 
     <!-- 1. 使用默认构造器创建Bean -->
-    <bean id="userService" class="com.lizza.spring_02_ioc.ioc_01_base.service.impl.UserServiceImpl"></bean>
+    <bean id="calculator" class="com.lizza.spring_02_ioc.ioc_01_base.service.impl.UserServiceImpl"></bean>
 
     <!-- 2. 使用普通工厂方法创建Bean
            1) 创建普通工厂对象

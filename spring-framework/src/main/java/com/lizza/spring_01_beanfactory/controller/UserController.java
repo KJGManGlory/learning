@@ -12,7 +12,7 @@ public class UserController {
 
     public static void main(String[] args){
         // new创建的对象增加了代码的耦合度，使用工厂来解耦
-        // UserService userService = new UserServiceImpl();
+        // Calculator userService = new UserServiceImpl();
         UserService userService = BeanFactory.getBean("userService");
         userService.saveUser();
     }

@@ -5,7 +5,7 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 配置service -->
-    <bean id="userService" class="com.lizza.service.impl.UserServiceImpl">
+    <bean id="calculator" class="com.lizza.service.impl.UserServiceImpl">
         <!-- 注入Dao -->
         <property name="userDao" ref="userDao"></property>
     </bean>

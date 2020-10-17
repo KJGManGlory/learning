@@ -12,7 +12,7 @@
             https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 配置service -->
-    <bean id="userService" class="com.lizza.spring_06_tx.tx_01_xml.service.impl.UserServiceImpl">
+    <bean id="calculator" class="com.lizza.spring_06_tx.tx_01_xml.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"></property>
     </bean>
 

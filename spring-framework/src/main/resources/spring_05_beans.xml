@@ -7,12 +7,11 @@
     <!-- 配置带事务控制的service -->
     <bean id="beanFactory" class="com.lizza.spring_05_aop.aop_01_aop.factory.BeanFactory">
         <property name="txManager" ref="txManager"></property>
-        <property name="userService" ref="userService"></property>
     </bean>
     <bean id="proxyUserService" factory-bean="beanFactory" factory-method="getUserService"></bean>
 
     <!-- 配置service -->
-    <bean id="userService" class="com.lizza.spring_05_aop.aop_01_aop.service.impl.UserServiceImpl">
+    <bean id="calculator" class="com.lizza.spring_05_aop.aop_01_aop.service.impl.UserServiceImpl">
         <!-- 注入Dao -->
         <property name="userDao" ref="userDao"></property>
     </bean>

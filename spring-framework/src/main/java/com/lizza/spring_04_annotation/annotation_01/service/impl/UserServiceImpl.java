@@ -48,12 +48,12 @@ import javax.annotation.Resource;
 public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(){
-        System.out.println("UserService Construct Method!");
+        System.out.println("Calculator Construct Method!");
     }
 
     @PostConstruct
     public void init() {
-        System.out.println("UserService init!");
+        System.out.println("Calculator init!");
     }
 
 //  @Autowired

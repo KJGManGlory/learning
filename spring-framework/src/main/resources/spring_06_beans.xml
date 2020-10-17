@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/aop
         https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="userService" class="com.lizza.spring_05_aop.aop_03_spring_aop.service.UserService"></bean>
+    <bean id="calculator" class="com.lizza.spring_05_aop.aop_03_spring_aop.service.UserService"></bean>
 
     <bean id="log" class="com.lizza.spring_05_aop.aop_03_spring_aop.util.Log"></bean>
 
@@ -22,10 +22,10 @@
         4. 切入点表达式
             关键字：execution
             表达式：访问修饰符 返回值 类限定名.方法名(参数列表)
-            标准写法：public void com.lizza.service.UserService.update(int)
-            访问修饰符可以省略：void com.lizza.service.UserService.update(int)
-            返回值可以使用通配符：* com.lizza.service.UserService.update(int)
-            包名可以使用通配符，有几级包写几个*：* *.*.*.UserService.update(int)
+            标准写法：public void com.lizza.service.Calculator.update(int)
+            访问修饰符可以省略：void com.lizza.service.Calculator.update(int)
+            返回值可以使用通配符：* com.lizza.service.Calculator.update(int)
+            包名可以使用通配符，有几级包写几个*：* *.*.*.Calculator.update(int)
             包名使用..表示当前包及其子包：* com.lizza..update(int)
             类名和方法名都可以使用通配符：* com.lizza..*()
             参数列表：* com.lizza..*(..)
