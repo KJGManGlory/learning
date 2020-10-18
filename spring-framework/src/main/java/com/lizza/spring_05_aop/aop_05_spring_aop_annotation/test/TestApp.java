@@ -2,6 +2,7 @@ package com.lizza.spring_05_aop.aop_05_spring_aop_annotation.test;
 
 import com.lizza.spring_05_aop.aop_05_spring_aop_annotation.config.SpringConfig;
 import com.lizza.spring_05_aop.aop_05_spring_aop_annotation.service.Calculator;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -12,9 +13,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class TestApp {
 
-    public static void main(String[] args){
+    @Test
+    public void test(){
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-        Calculator calculator = context.getBean("calculator", Calculator.class);
-        calculator.add();
+        Calculator calculator = context.getBean(Calculator.class);
+        calculator.division(1, 1);
     }
 }

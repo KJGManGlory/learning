@@ -1,52 +1,52 @@
 package com.lizza.spring_05_aop.aop_05_spring_aop_annotation.util;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 /**
- * @Desc: 通知的类型
- * @author: lizza1643@gmail.com
- * @date: 2020-03-26
+ * 1. @Pointcut抽取切入点表达式; 本类引用: pointCut()
+ * 2. JoinPoint获取切入点的相关信息, 使用的时候一定要放在方法参数列表的第一位
  */
+
 @Aspect
-@Component
 public class Log {
 
-    @Pointcut("execution(* com.lizza.spring_05_aop.aop_05_spring_aop_annotation..*())")
+    @Pointcut("execution(* com.lizza.spring_05_aop.aop_05_spring_aop_annotation.service.Calculator.*(..))")
     public void pointCut() {}
 
     /**
-     * 前置通知：切入点执行之前执行
+     * 前置通知：目标方法执行之前执行
      */
     @Before("pointCut()")
-    public void beforeLog() {
-        System.out.println("前置通知：记录日志...");
+    public void beforeLog(JoinPoint point) {
+        System.out.println(point.getSignature().getName() + "方法开始执行, 参数列表: " + Arrays.asList(point.getArgs()));
     }
 
     /**
-     * 后置通知：切入点执行之后执行
+     * 后置通知：目标方法执行之后执行
      */
-    @AfterReturning("pointCut()")
-    public void afterLog() {
-        System.out.println("后置通知：记录日志...");
+    @AfterReturning(value = "pointCut()", returning = "result")
+    public void afterLog(JoinPoint point, Object result) {
+        System.out.println(point.getSignature().getName() + "方法执行完成, 返回结果: " + result);
     }
 
     /**
-     * 异常通知：切入点执行发生异常时执行
+     * 异常通知：目标方法执行发生异常时执行
      */
-    @AfterThrowing("pointCut()")
-    public void exceptionLog() {
-        System.out.println("异常通知：记录日志...");
+    @AfterThrowing(value = "pointCut()", throwing = "e")
+    public void exceptionLog(JoinPoint point, Exception e) {
+        System.out.println(point.getSignature().getName() + "方法执行异常, 异常信息: " + e.getMessage());
     }
 
     /**
      * 最终通知：无论切入点执行发生异常与否，都会执行
      * 注意：基于注解的最终通知总会在后置通知或者异常通知之前执行
      */
-    @After("pointCut()")
-    public void finalLog() {
-        System.out.println("最终通知：记录日志...");
+    @After(value = "pointCut()")
+    public void finalLog(JoinPoint point) {
     }
 
     /**
